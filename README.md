@@ -59,6 +59,36 @@ stream create --name to_hdfs --definition ":windsock_queue > hdfs --fsUri=hdfs:/
 curl -H "Content-Type: application/json" -X POST -d '{"wind speed": 7.325088960678481, "timestamp": 1462555989, "wind direction": 6, "longitude": 112.56126350408175, "device id": "26A", "latitude": 76.8716224029603}' http://localhost:8888
 ```
 
+# Results
+
+## Check files in HDFS 
+bin/hdfs dfs -ls /user/windsock/
+16/05/07 00:51:43 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Found 6 items
+-rw-r--r--   3 wmarkito supergroup        966 2016-05-07 00:35 /user/windsock/data-0.txt
+-rw-r--r--   3 wmarkito supergroup        477 2016-05-07 00:36 /user/windsock/data-1.txt
+-rw-r--r--   3 wmarkito supergroup        159 2016-05-07 00:37 /user/windsock/data-2.txt
+-rw-r--r--   3 wmarkito supergroup        158 2016-05-07 00:42 /user/windsock/data-3.txt
+-rw-r--r--   3 wmarkito supergroup        159 2016-05-07 00:42 /user/windsock/data-4.txt
+-rw-r--r--   3 wmarkito supergroup        954 2016-05-07 00:46 /user/windsock/data-5.t
+
+## Query data in GemFire
+
+gfsh> query --query="select * from /windsock"
+
+Result     : true
+startCount : 0
+endCount   : 20
+Rows       : 5
+
+Result
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+{"wind_speed": 7.325088960678481, "timestamp": 123457, "wind_direction": 6, "longitude": 112.56126350408175, "device_id": "26A", "latitude": 76.8716224029603}
+{"wind_speed": 7.325088960678481, "timestamp": 12345, "wind_direction": 6, "longitude": 112.56126350408175, "device_id": "26A", "latitude": 76.8716224029603}
+{"wind_speed": 7.325088960678481, "timestamp": 146251559919, "wind_direction": 6, "longitude": 112.56126350408175, "device_id": "26A", "latitude": 76.8716224029603}
+{"wind_speed": 7.325088960678481, "timestamp": 149918, "wind_direction": 6, "longitude": 112.56126350408175, "device_id": "26A", "latitude": 76.8716224029603}
+{"wind_speed": 7.325088960678481, "timestamp": 123456, "wind_direction": 6, "longitude": 112.56126350408175, "device_id": "26A", "latitude": 76.8716224029603}
+
 # Troubleshooting
 
 ## Log sink in SCDF
