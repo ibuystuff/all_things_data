@@ -62,6 +62,8 @@ curl -H "Content-Type: application/json" -X POST -d '{"wind speed": 7.3250889606
 # Results
 
 ## Check files in HDFS 
+
+```
 bin/hdfs dfs -ls /user/windsock/
 16/05/07 00:51:43 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 Found 6 items
@@ -71,9 +73,11 @@ Found 6 items
 -rw-r--r--   3 wmarkito supergroup        158 2016-05-07 00:42 /user/windsock/data-3.txt
 -rw-r--r--   3 wmarkito supergroup        159 2016-05-07 00:42 /user/windsock/data-4.txt
 -rw-r--r--   3 wmarkito supergroup        954 2016-05-07 00:46 /user/windsock/data-5.t
+```
 
 ## Query data in GemFire
 
+```
 gfsh> query --query="select * from /windsock"
 
 Result     : true
@@ -88,6 +92,7 @@ Result
 {"wind_speed": 7.325088960678481, "timestamp": 146251559919, "wind_direction": 6, "longitude": 112.56126350408175, "device_id": "26A", "latitude": 76.8716224029603}
 {"wind_speed": 7.325088960678481, "timestamp": 149918, "wind_direction": 6, "longitude": 112.56126350408175, "device_id": "26A", "latitude": 76.8716224029603}
 {"wind_speed": 7.325088960678481, "timestamp": 123456, "wind_direction": 6, "longitude": 112.56126350408175, "device_id": "26A", "latitude": 76.8716224029603}
+```
 
 # Troubleshooting
 
