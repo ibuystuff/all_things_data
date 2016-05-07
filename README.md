@@ -41,7 +41,7 @@ stream create --name to_gemfire --definition ":windsock_queue > gemfire --useLoc
 #### HDFS
 
 ```
-stream create --name to_hdfs-2 --definition ":windsock_queue > hdfs --fsUri=hdfs://localhost:9000 --directory=/user/windsock/ --fileName=data --flushTimeout=5 --idleTimeout=5000" --deploy
+stream create --name to_hdfs --definition ":windsock_queue > hdfs --fsUri=hdfs://localhost:9000 --directory=/user/windsock/ --fileName=data --flushTimeout=5 --idleTimeout=5000" --deploy
 ```
 
 * Change namenode to your host:port information.
